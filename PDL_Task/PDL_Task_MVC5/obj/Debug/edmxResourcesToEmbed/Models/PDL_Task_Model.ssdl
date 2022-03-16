@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PDL_TaskModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Departments">
+    <Key>
+      <PropertyRef Name="DepartmentId" />
+    </Key>
+    <Property Name="DepartmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DepartmentCode" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="DepartmentName" Type="nvarchar" MaxLength="40" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Retailers">
+    <Key>
+      <PropertyRef Name="RetailerId" />
+    </Key>
+    <Property Name="RetailerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RetailerCode" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="RetailerName" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="DepartmentId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Retailers__Depar__276EDEB3">
+    <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+    <End Role="Retailers" Type="Self.Retailers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departments">
+        <PropertyRef Name="DepartmentId" />
+      </Principal>
+      <Dependent Role="Retailers">
+        <PropertyRef Name="DepartmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PDL_TaskModelStoreContainer">
+    <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Retailers" EntityType="Self.Retailers" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Retailers__Depar__276EDEB3" Association="Self.FK__Retailers__Depar__276EDEB3">
+      <End Role="Departments" EntitySet="Departments" />
+      <End Role="Retailers" EntitySet="Retailers" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,54 @@
+﻿@model PDL_Task_MVC5.ViewModels.DepartmentRetailerVM
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <div class="col-12">
+        <h3>Departments</h3>
+        <table class="table table-bordered">
+            <thead class="table-light">
+                <tr>
+                    <th>..</th>
+                    <th>Department Name</th>
+                    <th>Department Code</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var dept in Model.Departments)
+                {
+                    <tr>
+                        <td>
+                            <a class="btn-link" href="@Url.Action("Index", "Departments", new { selected=dept.DepartmentId})">Select</a>
+                        </td>
+                        <td>@dept.DepartmentName</td>
+                        <td>@dept.DepartmentCode</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-12">
+        <h3>Retailers</h3>
+        <table class="table table-bordered">
+            <thead class="table-light">
+                <tr>
+
+                    <th>Retailer Name</th>
+                    <th>Retailer Code</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var ret in Model.Retailers)
+                {
+                    <tr>
+
+                        <td>@ret.RetailerName</td>
+                        <td>@ret.RetailerCode</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
